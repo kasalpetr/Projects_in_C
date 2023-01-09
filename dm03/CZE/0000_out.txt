@@ -1,0 +1,22 @@
+Optimalizovany seznam:
+ 0. fresh bread -> #0 fresh bread
+ 1. FLOUR -> #1 flour
+ 2. butter -> #1 butter
+ 3. butter -> #1 butter
+ 4. newspaper -> #2 newspaper
+ 5. Hot chilli -> #2 hot chilli
+ 6. beer -> N/A
+ 7. beer -> N/A
+ 8. beer -> N/A
+ 9. beer -> N/A
+Optimalizovany seznam:
+ 0. chilli -> #0 Red Hot Chilli Peppers CD
+ 1. hot pepper -> #0 hot pepper sauce
+ 2. red tomato -> #0 red tomato seeds
+ 3. tomato -> #1 tomato
+ 4. milk -> #1 milk
+ 5. orange -> #2 orange juice
+Optimalizovany seznam:
+ 0. potato -> #0 rotten potato
+ 1. fresh -> #0 fresh bread
+ 2. CD -> #0 Red Hot Chilli Peppers CD

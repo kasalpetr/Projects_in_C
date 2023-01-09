@@ -1,0 +1,6 @@
+Optimalizovany seznam:
+ 0. WINE -> #0 wine
+ 1. NUTS -> #4 coconuts
+ 2. POT -> #4 potato
+ 3. MAT -> #4 tomato
+ 4. WHISKEY -> N/A

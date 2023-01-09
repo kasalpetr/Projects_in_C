@@ -1,0 +1,9 @@
+Optimalizovany seznam:
+ 0. beer -> #0 beer
+ 1. wine -> #0 wine
+Optimalizovany seznam:
+ 0. apple -> N/A
+ 1. orange -> N/A
+Optimalizovany seznam:
+ 0. pot -> N/A
+ 1. spoon -> N/A
