@@ -1,0 +1,4 @@
+Zadejte kreditni urok [%]:
+Zadejte debetni urok [%]:
+Zadejte transakce:
+Nespravny vstup.
