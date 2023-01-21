@@ -51,7 +51,7 @@ int main(int argc, char const *argv[])
     // Registred Student
     RegistredStudent *array_registred;
     array_registred = (RegistredStudent *)malloc(sizeof(RegistredStudent));
-    int number_of_registred = -1;
+    int number_of_registred = 0;
 
     // Student that come on exam
     StudentCome *array_come;
@@ -71,40 +71,7 @@ int main(int argc, char const *argv[])
         {
             break;
         }
-        if (strcmp(buffer, "R:") != 0)
-        {
-            number_of_name++;
-            switch (number_of_name)
-            {
-            case 1:
-                array_registred[number_of_registred].name_1 = buffer;
-                printf("%s\n",array_registred[number_of_registred].name_1);
-                break;
-            case 2:
-                array_registred[number_of_registred].name_2 = buffer;
-                printf("%s\n",array_registred[number_of_registred].name_2);
-
-                break;
-            case 3:
-                array_registred[number_of_registred].name_3 = buffer;
-                printf("%s\n",array_registred[number_of_registred].name_3);
-
-                break;
-            }
-        }
-        else
-        {
-            number_of_name = 0;
-            number_of_registred++;
-            printf("Clovek cislo :%d\n", number_of_registred);
-            array_registred = (RegistredStudent *)realloc(array_registred, number_of_registred + 1 * sizeof(RegistredStudent));
-            
-        }
     }
-
-        printf("name is -- %s %s %s\n ", array_registred[0].name_1, array_registred[0].name_2, array_registred[0].name_3);
-
-    PrintArray(array_registred, number_of_registred);
 
     return 0;
 }
