@@ -28,7 +28,7 @@ void PrintArrayofStruct(struct dictionary array[], int numbers_of_element)
     }
 }
 
-int InDictionary(char *word_from_dictionary, struct dictionary array[], int numbers_of_element)
+int InDictionary(char *word_from_dictionary, struct dictionary array[], int numbers_of_element) // Return 1 when word from text is in Dictionary
 {
 
     for (int i = 0; i < numbers_of_element; i++)
@@ -40,6 +40,24 @@ int InDictionary(char *word_from_dictionary, struct dictionary array[], int numb
     }
 
     return 0;
+}
+
+void AddCharacter(struct dictionary *array, int number_of_element)
+{
+
+    for (int i = 0; i < number_of_element; i++)
+    {
+    char start[36] = "<arg>";
+    char konec[] = "<arg>";
+        if (array[i].is_in_dictionary == 0)
+        {
+            strcat(start, array[i].word);
+            strcpy(array[i].word, start);
+            strcat(array[i].word, konec);
+
+            array[i].lenght = strlen(array[i].word);
+        }
+    }
 }
 
 int main(int argc, char const *argv[])
@@ -80,7 +98,7 @@ int main(int argc, char const *argv[])
     while (1) // Scan the text
     {
         buffer_text = (char *)malloc(31 * sizeof(char));
-        if (scanf("%s", buffer_text) == EOF)
+        if (scanf("%30s", buffer_text) == EOF)
         {
             break;
         }
@@ -91,6 +109,8 @@ int main(int argc, char const *argv[])
         number_of_word_text++;                                                                                                                              // at first string is go int from 0 to 1
         array_text = (dictionary *)realloc(array_text, (number_of_word_text + 1) * sizeof(dictionary));                                                     // realoc array
     }
+
+    AddCharacter(array_text, number_of_word_text);
 
     // Just printing list its only for me to see what is happaning right now XD
     printf("Slovník:\n");
