@@ -42,7 +42,7 @@ int InDictionary(char *word_from_dictionary, struct dictionary array[], int numb
     return 0;
 }
 
-void AddCharacter(struct dictionary *array, int number_of_element)
+void AddCharacter(struct dictionary *array, int number_of_element) //Pridava znaky na zacatek a na konec
 {
 
     for (int i = 0; i < number_of_element; i++)
