@@ -6,6 +6,7 @@ typedef struct dictionary
 {
     char *word;
     int lenght;
+    int is_in_dictionary;
 } dictionary;
 
 void ArrayfreeMemory(struct dictionary array[], int numbers_of_element)
@@ -27,8 +28,18 @@ void PrintArrayofStruct(struct dictionary array[], int numbers_of_element)
     }
 }
 
-void InDictionary(){
-    
+int InDictionary(char *word_from_dictionary, struct dictionary array[], int numbers_of_element)
+{
+
+    for (int i = 0; i < numbers_of_element; i++)
+    {
+        if (strcasecmp(word_from_dictionary, array[i].word) == 0)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
 }
 
 int main(int argc, char const *argv[])
@@ -74,8 +85,9 @@ int main(int argc, char const *argv[])
             break;
         }
 
-        array_text[number_of_word_text].word = buffer_text;                                             // Save the word from text in to the struct
-        array_text[number_of_word_text].lenght = strlen(buffer_text);                                   // Save the lenght of word        
+        array_text[number_of_word_text].word = buffer_text;           // Save the word from text in to the struct
+        array_text[number_of_word_text].lenght = strlen(buffer_text); // Save the lenght of word
+        array_text[number_of_word_text].is_in_dictionary = InDictionary(array_text[number_of_word_text].word, array_dictionary, number_of_word_dictionary);
         number_of_word_text++;                                                                          // at first string is go int from 0 to 1
         array_text = (dictionary *)realloc(array_text, (number_of_word_text + 1) * sizeof(dictionary)); // realoc array
     }
