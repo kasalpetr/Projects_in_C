@@ -71,6 +71,7 @@ int main(int argc, char const *argv[])
         {
             break;
         }
+        printf("%s\n",buffer);
     }
 
     return 0;
