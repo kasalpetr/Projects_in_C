@@ -1,3 +1,9 @@
-1 2
-3 4
-5 6
+Studenti:
+R: Ladislav Vagner
+R: Jan Travnicek
+R: Jan Novy Jan
+R: Jan Kuba
+P: Jan Novy
+P: Jan Travnicek
+P: VAGNER Ladislav
+P: Vagner Ladislav
