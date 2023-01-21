@@ -85,11 +85,11 @@ int main(int argc, char const *argv[])
             break;
         }
 
-        array_text[number_of_word_text].word = buffer_text;           // Save the word from text in to the struct
-        array_text[number_of_word_text].lenght = strlen(buffer_text); // Save the lenght of word
-        array_text[number_of_word_text].is_in_dictionary = InDictionary(array_text[number_of_word_text].word, array_dictionary, number_of_word_dictionary);
-        number_of_word_text++;                                                                          // at first string is go int from 0 to 1
-        array_text = (dictionary *)realloc(array_text, (number_of_word_text + 1) * sizeof(dictionary)); // realoc array
+        array_text[number_of_word_text].word = buffer_text;                                                                                                 // Save the word from text in to the struct
+        array_text[number_of_word_text].lenght = strlen(buffer_text);                                                                                       // Save the lenght of word
+        array_text[number_of_word_text].is_in_dictionary = InDictionary(array_text[number_of_word_text].word, array_dictionary, number_of_word_dictionary); // If is the word from text in Dictionary it will be set on 1
+        number_of_word_text++;                                                                                                                              // at first string is go int from 0 to 1
+        array_text = (dictionary *)realloc(array_text, (number_of_word_text + 1) * sizeof(dictionary));                                                     // realoc array
     }
 
     // Just printing list its only for me to see what is happaning right now XD
