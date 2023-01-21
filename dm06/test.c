@@ -42,13 +42,13 @@ int InDictionary(char *word_from_dictionary, struct dictionary array[], int numb
     return 0;
 }
 
-void AddCharacter(struct dictionary *array, int number_of_element) //Pridava znaky na zacatek a na konec
+void AddCharacter(struct dictionary *array, int number_of_element) // Adding characters on start and end of word from text which is not contain in dictionary
 {
 
     for (int i = 0; i < number_of_element; i++)
     {
-    char start[36] = "<arg>";
-    char konec[] = "<arg>";
+        char start[36] = "<arg>";
+        char konec[] = "</arg>";
         if (array[i].is_in_dictionary == 0)
         {
             strcat(start, array[i].word);
@@ -58,6 +58,49 @@ void AddCharacter(struct dictionary *array, int number_of_element) //Pridava zna
             array[i].lenght = strlen(array[i].word);
         }
     }
+}
+
+void PrintFinale(struct dictionary *array, int number_of_element) // Printing Finale text and one row of text is shorter than 80 character in 80 characters \n is not include
+{
+    int lenght_of_row = 0;
+    printf("\n\n-----------------\n\n");
+    for (int i = 0; i < number_of_element; i++)
+    {
+        lenght_of_row += array[i].lenght;
+        if (lenght_of_row > 80)
+        {
+            if (i == number_of_element - 1)
+            {
+                printf("\n%s", array[i].word);
+            }
+            else
+            {
+                printf("\n%s ", array[i].word);
+            }
+
+            lenght_of_row = 0;
+        }
+        else
+        {
+
+            if (i == number_of_element - 1)
+            {
+                printf("%s", array[i].word);
+            }
+            else
+            {
+                if (lenght_of_row + array[i + 1].lenght > 80)
+                {
+                    printf("%s", array[i].word);
+                }
+                else
+                {
+                    printf("%s ", array[i].word);
+                }
+            }
+        }
+    }
+    printf("\n\n-----------------\n\n");
 }
 
 int main(int argc, char const *argv[])
@@ -117,6 +160,9 @@ int main(int argc, char const *argv[])
     PrintArrayofStruct(array_dictionary, number_of_word_dictionary);
     printf("Text:\n");
     PrintArrayofStruct(array_text, number_of_word_text);
+
+    // Finale solution
+    PrintFinale(array_text, number_of_word_text);
 
     // Free memory
     free(buffer);
