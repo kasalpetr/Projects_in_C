@@ -21,28 +21,11 @@ void PrintArray(struct RegistredStudent array[], int number_of_element)
 {
     for (int i = 0; i < number_of_element; i++)
     {
-        printf("name is -- %s %s %s\n ", array[1].name_1, array[1].name_2, array[1].name_3);
+        printf("name is -- %s %s %s\n ", array[i].name_1, array[i].name_2, array[i].name_3);
     }
 }
 
-void Savename(struct RegistredStudent *array, int number_of_element, int number_of_name, char *buffer)
-{
-    switch (number_of_name)
-    {
-    case 1:
-        array[number_of_element].name_1 = buffer;
 
-        break;
-    case 2:
-        array[number_of_element].name_2 = buffer;
-
-        break;
-    case 3:
-        array[number_of_element].name_3 = buffer;
-
-        break;
-    }
-}
 
 int main(int argc, char const *argv[])
 {
