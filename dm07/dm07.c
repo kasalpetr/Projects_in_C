@@ -17,22 +17,21 @@ typedef struct StudentCome // Struct on student that come on exam
     int was_registred;
 } StudentCome;
 
-void Savearray(struct RegistredStudent array[], int number_of_element, int number_of_name, char *buffer){
-               switch (number_of_name)
-            {
-            case 1:
-                array[number_of_element].name_1 = buffer;
-                break;
-            case 2:
-                array[number_of_element].name_2 = buffer;
-                break;
-            case 3:
-                array[number_of_element].name_3 = buffer;
-                break;
-            }
-
+void Savearray(struct RegistredStudent array[], int number_of_element, int number_of_name, char *buffer)
+{
+    switch (number_of_name)
+    {
+    case 1:
+        array[number_of_element].name_1 = buffer;
+        break;
+    case 2:
+        array[number_of_element].name_2 = buffer;
+        break;
+    case 3:
+        array[number_of_element].name_3 = buffer;
+        break;
+    }
 }
-
 
 void PrintArray(struct RegistredStudent array[], int number_of_element)
 {
@@ -73,21 +72,19 @@ int main(int argc, char const *argv[])
 
         if (strcmp(buffer, "R:") != 0) // konec Registrovaných
         {
-
             printf("%s ", buffer);
             number_of_name++;
-            Savearray(array_registred,number_of_registred,number_of_name, buffer);
-            
+            Savearray(array_registred, number_of_registred, number_of_name, buffer);
         }
         else
         {
-            if (number_of_registred != 0 || number_of_name != 0 )
+            if (number_of_registred != 0 || number_of_name != 0)
             {
-            number_of_name = 0;
+                number_of_name = 0;
 
-            number_of_registred++;
-            array_registred = (RegistredStudent*)realloc(array_registred, number_of_registred*3  * sizeof(RegistredStudent));
-            printf("\n");
+                number_of_registred++;
+                array_registred = (RegistredStudent *)realloc(array_registred, number_of_registred * 3 * sizeof(RegistredStudent));
+                printf("\n");
             }
             number_of_name = 0;
         }
@@ -97,8 +94,8 @@ int main(int argc, char const *argv[])
     // printf("\n --- %s %s %s ---\n\n", array_registred[i].name_1, array_registred[i].name_2, array_registred[i].name_3);
     //     /* code */
     // }
-    
-    PrintArray(array_registred,number_of_registred);
-    
+
+    PrintArray(array_registred, number_of_registred);
+
     return 0;
 }
