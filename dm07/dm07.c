@@ -89,12 +89,13 @@ int main(int argc, char const *argv[])
             number_of_name = 0;
         }
     }
-    // for (size_t i = 0; i <= number_of_registred; i++)
-    // {
-    // printf("\n --- %s %s %s ---\n\n", array_registred[i].name_1, array_registred[i].name_2, array_registred[i].name_3);
-    //     /* code */
-    // }
 
+
+    while (1)
+    {
+        /* code */
+    }
+    
     PrintArray(array_registred, number_of_registred);
 
     return 0;
