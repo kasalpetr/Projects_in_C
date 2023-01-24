@@ -1,4 +1,4 @@
-Není Hotovo 
+Hotovo 
 
 Parafráze zadání
 
