@@ -17,8 +17,20 @@ typedef struct StudentCome // Struct on student that come on exam
     int was_registred;
 } StudentCome;
 
-void Savearray(struct RegistredStudent array[], int number_of_element, int number_of_names){
-    
+void Savearray(struct RegistredStudent array[], int number_of_element, int number_of_name, char *buffer){
+               switch (number_of_name)
+            {
+            case 1:
+                array[number_of_element].name_1 = buffer;
+                break;
+            case 2:
+                array[number_of_element].name_2 = buffer;
+                break;
+            case 3:
+                array[number_of_element].name_3 = buffer;
+                break;
+            }
+
 }
 
 
@@ -64,19 +76,8 @@ int main(int argc, char const *argv[])
 
             printf("%s ", buffer);
             number_of_name++;
-
-            switch (number_of_name)
-            {
-            case 1:
-                array_registred[number_of_registred].name_1 = buffer;
-                break;
-            case 2:
-                array_registred[number_of_registred].name_2 = buffer;
-                break;
-            case 3:
-                array_registred[number_of_registred].name_3 = buffer;
-                break;
-            }
+            Savearray(array_registred,number_of_registred,number_of_name, buffer);
+            
         }
         else
         {
