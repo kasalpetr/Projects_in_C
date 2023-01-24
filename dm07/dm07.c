@@ -82,6 +82,43 @@ void PrintArrayCome(struct StudentCome array[], int number_of_element) //vypis p
     }
 }
 
+void WasRegistred(struct RegistredStudent *registred,struct StudentCome *come,int number_of_registred, int number_of_come){
+    for (int i = 0; i <=number_of_come; i++)
+    {
+        for (int j = 0; j <= number_of_registred; j++)
+        {
+            if (strcasecmp(come[i].name_1,registred[j].name_1) == 0 && strcasecmp(come[i].name_2,registred[j].name_2) == 0 && strcasecmp(come[i].name_3,registred[j].name_3) == 0 )
+            {
+                printf("%s %s == %s %s\n", come[i].name_1, come[i].name_2,registred[j].name_1,registred[j].name_2);
+            }
+                        
+        }
+        
+        
+    }
+    
+
+}
+
+void Nullname(struct RegistredStudent *registred,struct StudentCome *come,int number_of_registred, int number_of_come){
+for (int i = 0; i < number_of_registred; i++)
+{
+    if (registred[i].name_3 == NULL )
+    {
+        registred[i].name_3 = registred[i].name_3;
+    }
+}
+for (int i = 0; i < number_of_come; i++)
+{
+    if (come[i].name_3 == NULL )
+    {
+        come[i].name_3 = come[i].name_3;
+    }
+}
+    
+
+}
+
 int main(int argc, char const *argv[])
 {
     int number_of_name = 0;
@@ -132,6 +169,7 @@ int main(int argc, char const *argv[])
         }
     }
     number_of_name = 0;
+    printf("\n---------------------\n");
     while (1)
     {
 
@@ -156,6 +194,9 @@ int main(int argc, char const *argv[])
             printf("\n");
         }
     }
+
+    Nullname(array_registred, array_come, number_of_registred, number_of_come);
+    WasRegistred(array_registred, array_come, number_of_registred, number_of_come);
 
     PrintArray(array_registred, number_of_registred);
     PrintArrayCome(array_come, number_of_come);
