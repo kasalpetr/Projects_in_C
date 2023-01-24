@@ -55,7 +55,7 @@ void PrintArray(struct RegistredStudent array[], int number_of_element) // vypis
     for (int i = 0; i <= number_of_element; i++)
     {
         printf("%d Name is -- %s %s", i, array[i].name_1, array[i].name_2);
-        if (array[i].name_3 == NULL)
+        if (strcmp(array[i].name_3, "-----") == 0)
         {
             printf("\n");
         }
@@ -71,7 +71,7 @@ void PrintArrayCome(struct StudentCome array[], int number_of_element) // vypis 
     for (int i = 0; i <= number_of_element; i++)
     {
         printf("%d Name is -- %s %s", i, array[i].name_1, array[i].name_2);
-        if (array[i].name_3 == NULL)
+        if (strcmp(array[i].name_3, "-----") == 0)
         {
             printf("\n");
         }
@@ -88,9 +88,10 @@ void WasRegistred(struct RegistredStudent *registred, struct StudentCome *come, 
     {
         for (int j = 0; j <= number_of_registred; j++)
         {
-            if (strcasecmp(come[i].name_1, registred[j].name_1) == 0 && strcasecmp(come[i].name_2, registred[j].name_2) == 0 && strcasecmp(come[i].name_3, registred[j].name_3) == 0)
+            if (strcasecmp(come[i].name_1, registred[j].name_1) == 0 && strcasecmp(come[i].name_2, registred[j].name_2) == 0 && strcasecmp(come[i].name_3, registred[j].name_3) == 0 && registred[j].come_on_exam == 0)
             {
-                printf("%s %s == %s %s\n", come[i].name_1, come[i].name_2, registred[j].name_1, registred[j].name_2);
+                registred[j].come_on_exam = 1;
+                come[i].was_registred = 1;
             }
         }
     }
@@ -98,18 +99,19 @@ void WasRegistred(struct RegistredStudent *registred, struct StudentCome *come, 
 
 void Nullname(struct RegistredStudent *registred, struct StudentCome *come, int number_of_registred, int number_of_come)
 {
+    char buffer[] = "-----";
     for (int i = 0; i <= number_of_registred; i++)
     {
         if (registred[i].name_3 == NULL)
         {
-            registred[i].name_3 = registred[i].name_2;
+            registred[i].name_3 = buffer;
         }
     }
     for (int i = 0; i <= number_of_come; i++)
     {
         if (come[i].name_3 == NULL)
         {
-            come[i].name_3 = come[i].name_2;
+            come[i].name_3 = buffer;
         }
     }
 }
