@@ -185,6 +185,29 @@ void Nullname(struct RegistredStudent *registred, struct StudentCome *come, int 
     }
 }
 
+void ArrayfreeMemoryRegistred(struct RegistredStudent array[], int numbers_of_element)
+{
+    for (int i = 0; i <= numbers_of_element; i++)
+    {
+        free(array[i].name_1);
+        free(array[i].name_2);
+        free(array[i].name_3);
+    }
+
+    free(array);
+}
+void ArrayfreeMemorycome(struct StudentCome array[], int numbers_of_element)
+{
+    for (int i = 0; i <= numbers_of_element; i++)
+    {
+        free(array[i].name_1);
+        free(array[i].name_2);
+        free(array[i].name_3);
+    }
+
+    free(array);
+}
+
 int main(int argc, char const *argv[])
 {
     int number_of_name = 0;
@@ -208,7 +231,10 @@ int main(int argc, char const *argv[])
         if (scanf("%s", buffer) == EOF)
         {
             printf("Spatny vstup\n");
-            break;
+            ArrayfreeMemorycome(array_come, number_of_come);
+            ArrayfreeMemoryRegistred(array_registred, number_of_registred);
+            free(buffer);
+            return 0;
         }
         if (strcmp(buffer, "P:") == 0) // konec Registrovaných
         {
@@ -246,6 +272,15 @@ int main(int argc, char const *argv[])
             printf("\n\nKonec Načítání\n-------------------\n");
             break;
         }
+        if (strcmp(buffer, "R:") == 0) // konec Registrovaných
+        {
+            printf("spatny vstup\n");
+            ArrayfreeMemorycome(array_come, number_of_come);
+            ArrayfreeMemoryRegistred(array_registred, number_of_registred);
+            free(buffer2);
+            free(buffer);
+            return 0;
+        }
         if (strcmp(buffer2, "P:") != 0) // konec Registrovaných
         {
             printf("%s ", buffer2);
@@ -264,10 +299,12 @@ int main(int argc, char const *argv[])
     Nullname(array_registred, array_come, number_of_registred, number_of_come);
     WasRegistred(array_registred, array_come, number_of_registred, number_of_come);
 
-    PrintArray(array_registred, number_of_registred);
-    PrintArrayCome(array_come, number_of_come);
-
     PrintNotRegistred(array_registred, number_of_registred);
-    PrintNotcome(array_come,number_of_come);
+    PrintNotcome(array_come, number_of_come);
+
+    ArrayfreeMemorycome(array_come, number_of_come);
+    ArrayfreeMemoryRegistred(array_registred, number_of_registred);
+    free(buffer2);
+    free(buffer);
     return 0;
 }
