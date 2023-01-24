@@ -1,4 +1,3 @@
-Studenti:
 R: Ladislav Vagner
 R: Jan Travnicek
 R: Jan Novy Jan

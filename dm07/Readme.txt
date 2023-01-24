@@ -1,3 +1,6 @@
+NENI HOTOVO
+-----------
+
 Parafráze zadání
 
 Ukolem je vytvořit rozhraní pro správu studentů ucházejících se o splnění zkoušky.
@@ -19,3 +22,5 @@ Nespravny Vstup:
 1) Nejdrive se zadavaji Registrovani studenti a poté Přítomní. Pokud na vstupu je zadán Registrovaný student až po přítomném je vstup chybný.
 2) Na začátku řádky není identifikátor P nebo R.
 ! prádný vstup není nesprávný vstup
+
+
