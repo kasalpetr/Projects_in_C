@@ -33,7 +33,7 @@ void Savearray(struct RegistredStudent array[], int number_of_element, int numbe
         break;
     }
 }
-void SavearrayCome(struct StudentCome array[], int number_of_element, int number_of_name, char *buffer)  //ukladani jmeno pro studenty co prisly
+void SavearrayCome(struct StudentCome array[], int number_of_element, int number_of_name, char *buffer) // ukladani jmeno pro studenty co prisly
 {
     switch (number_of_name)
     {
@@ -49,12 +49,12 @@ void SavearrayCome(struct StudentCome array[], int number_of_element, int number
     }
 }
 
-void PrintArray(struct RegistredStudent array[], int number_of_element) //vypis pole
+void PrintArray(struct RegistredStudent array[], int number_of_element) // vypis pole
 {
     printf("\n");
     for (int i = 0; i <= number_of_element; i++)
     {
-        printf("%d Name is -- %s %s",i, array[i].name_1, array[i].name_2);
+        printf("%d Name is -- %s %s", i, array[i].name_1, array[i].name_2);
         if (array[i].name_3 == NULL)
         {
             printf("\n");
@@ -65,12 +65,12 @@ void PrintArray(struct RegistredStudent array[], int number_of_element) //vypis 
         }
     }
 }
-void PrintArrayCome(struct StudentCome array[], int number_of_element) //vypis pole
+void PrintArrayCome(struct StudentCome array[], int number_of_element) // vypis pole
 {
     printf("\n");
     for (int i = 0; i <= number_of_element; i++)
     {
-        printf("%d Name is -- %s %s",i, array[i].name_1, array[i].name_2);
+        printf("%d Name is -- %s %s", i, array[i].name_1, array[i].name_2);
         if (array[i].name_3 == NULL)
         {
             printf("\n");
@@ -82,41 +82,36 @@ void PrintArrayCome(struct StudentCome array[], int number_of_element) //vypis p
     }
 }
 
-void WasRegistred(struct RegistredStudent *registred,struct StudentCome *come,int number_of_registred, int number_of_come){
-    for (int i = 0; i <=number_of_come; i++)
+void WasRegistred(struct RegistredStudent *registred, struct StudentCome *come, int number_of_registred, int number_of_come)
+{
+    for (int i = 0; i <= number_of_come; i++)
     {
         for (int j = 0; j <= number_of_registred; j++)
         {
-            if (strcasecmp(come[i].name_1,registred[j].name_1) == 0 && strcasecmp(come[i].name_2,registred[j].name_2) == 0 && strcasecmp(come[i].name_3,registred[j].name_3) == 0 )
+            if (strcasecmp(come[i].name_1, registred[j].name_1) == 0 && strcasecmp(come[i].name_2, registred[j].name_2) == 0 && strcasecmp(come[i].name_3, registred[j].name_3) == 0)
             {
-                printf("%s %s == %s %s\n", come[i].name_1, come[i].name_2,registred[j].name_1,registred[j].name_2);
+                printf("%s %s == %s %s\n", come[i].name_1, come[i].name_2, registred[j].name_1, registred[j].name_2);
             }
-                        
         }
-        
-        
     }
-    
-
 }
 
-void Nullname(struct RegistredStudent *registred,struct StudentCome *come,int number_of_registred, int number_of_come){
-for (int i = 0; i < number_of_registred; i++)
+void Nullname(struct RegistredStudent *registred, struct StudentCome *come, int number_of_registred, int number_of_come)
 {
-    if (registred[i].name_3 == NULL )
+    for (int i = 0; i <= number_of_registred; i++)
     {
-        registred[i].name_3 = registred[i].name_3;
+        if (registred[i].name_3 == NULL)
+        {
+            registred[i].name_3 = registred[i].name_2;
+        }
     }
-}
-for (int i = 0; i < number_of_come; i++)
-{
-    if (come[i].name_3 == NULL )
+    for (int i = 0; i <= number_of_come; i++)
     {
-        come[i].name_3 = come[i].name_3;
+        if (come[i].name_3 == NULL)
+        {
+            come[i].name_3 = come[i].name_2;
+        }
     }
-}
-    
-
 }
 
 int main(int argc, char const *argv[])
