@@ -92,6 +92,42 @@ void WasRegistred(struct RegistredStudent *registred, struct StudentCome *come, 
             {
                 registred[j].come_on_exam = 1;
                 come[i].was_registred = 1;
+                printf("%s %s == %s %s\n", registred[j].name_1, registred[j].name_2 ,come[i].name_1,come[i].name_2);
+            }
+            if (strcasecmp(come[i].name_1, registred[j].name_1) == 0 && strcasecmp(come[i].name_2, registred[j].name_3) == 0 && strcasecmp(come[i].name_3, registred[j].name_2) == 0 && registred[j].come_on_exam == 0)
+            {
+                registred[j].come_on_exam = 1;
+                come[i].was_registred = 1;
+                printf("%s %s == %s %s\n", registred[j].name_1, registred[j].name_2 ,come[i].name_1,come[i].name_2);
+
+            }
+            if (strcasecmp(come[i].name_1, registred[j].name_2) == 0 && strcasecmp(come[i].name_2, registred[j].name_1) == 0 && strcasecmp(come[i].name_3, registred[j].name_3) == 0 && registred[j].come_on_exam == 0)
+            {
+                registred[j].come_on_exam = 1;
+                come[i].was_registred = 1;
+                printf("%s %s == %s %s\n", registred[j].name_1, registred[j].name_2 ,come[i].name_1,come[i].name_2);
+
+            }
+            if (strcasecmp(come[i].name_1, registred[j].name_2) == 0 && strcasecmp(come[i].name_2, registred[j].name_3) == 0 && strcasecmp(come[i].name_3, registred[j].name_1) == 0 && registred[j].come_on_exam == 0)
+            {
+                registred[j].come_on_exam = 1;
+                come[i].was_registred = 1;
+                printf("%s %s == %s %s\n", registred[j].name_1, registred[j].name_2 ,come[i].name_1,come[i].name_2);
+
+            }
+            if (strcasecmp(come[i].name_1, registred[j].name_3) == 0 && strcasecmp(come[i].name_2, registred[j].name_1) == 0 && strcasecmp(come[i].name_3, registred[j].name_2) == 0 && registred[j].come_on_exam == 0)
+            {
+                registred[j].come_on_exam = 1;
+                come[i].was_registred = 1;
+                printf("%s %s == %s %s\n", registred[j].name_1, registred[j].name_2 ,come[i].name_1,come[i].name_2);
+
+            }
+            if (strcasecmp(come[i].name_1, registred[j].name_3) == 0 && strcasecmp(come[i].name_2, registred[j].name_2) == 0 && strcasecmp(come[i].name_3, registred[j].name_1) == 0 && registred[j].come_on_exam == 0)
+            {
+                registred[j].come_on_exam = 1;
+                come[i].was_registred = 1;
+                printf("%s %s == %s %s\n", registred[j].name_1, registred[j].name_2 ,come[i].name_1,come[i].name_2);
+
             }
         }
     }
