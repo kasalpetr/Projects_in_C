@@ -1,5 +1,4 @@
-NENI HOTOVO
------------
+Není Hotovo 
 
 Parafráze zadání
 
@@ -23,4 +22,4 @@ Nespravny Vstup:
 2) Na začátku řádky není identifikátor P nebo R.
 ! prádný vstup není nesprávný vstup
 
-
+- ve vystupu se ukazuje i pomocný tisk
