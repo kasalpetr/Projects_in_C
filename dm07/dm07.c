@@ -7,6 +7,7 @@ typedef struct RegistredStudent // Struct on student that registred on exam
     char *name_1;
     char *name_2;
     char *name_3;
+    int come_on_exam;
 } RegistredStudent;
 
 typedef struct StudentCome // Struct on student that come on exam
@@ -17,7 +18,22 @@ typedef struct StudentCome // Struct on student that come on exam
     int was_registred;
 } StudentCome;
 
-void Savearray(struct RegistredStudent array[], int number_of_element, int number_of_name, char *buffer)
+void Savearray(struct RegistredStudent array[], int number_of_element, int number_of_name, char *buffer) // ukladani registrovanych studentu
+{
+    switch (number_of_name)
+    {
+    case 1:
+        array[number_of_element].name_1 = buffer;
+        break;
+    case 2:
+        array[number_of_element].name_2 = buffer;
+        break;
+    case 3:
+        array[number_of_element].name_3 = buffer;
+        break;
+    }
+}
+void SavearrayCome(struct StudentCome array[], int number_of_element, int number_of_name, char *buffer)  //ukladani jmeno pro studenty co prisly
 {
     switch (number_of_name)
     {
@@ -33,27 +49,53 @@ void Savearray(struct RegistredStudent array[], int number_of_element, int numbe
     }
 }
 
-void PrintArray(struct RegistredStudent array[], int number_of_element)
+void PrintArray(struct RegistredStudent array[], int number_of_element) //vypis pole
 {
     printf("\n");
     for (int i = 0; i <= number_of_element; i++)
     {
-        printf("name is -- %s %s %s\n", array[i].name_1, array[i].name_2, array[i].name_3);
+        printf("%d Name is -- %s %s",i, array[i].name_1, array[i].name_2);
+        if (array[i].name_3 == NULL)
+        {
+            printf("\n");
+        }
+        else
+        {
+            printf(" %s\n", array[i].name_3);
+        }
+    }
+}
+void PrintArrayCome(struct StudentCome array[], int number_of_element) //vypis pole
+{
+    printf("\n");
+    for (int i = 0; i <= number_of_element; i++)
+    {
+        printf("%d Name is -- %s %s",i, array[i].name_1, array[i].name_2);
+        if (array[i].name_3 == NULL)
+        {
+            printf("\n");
+        }
+        else
+        {
+            printf(" %s\n", array[i].name_3);
+        }
     }
 }
 
 int main(int argc, char const *argv[])
 {
-    char *buffer;
     int number_of_name = 0;
     // Registred Student
+    char *buffer;
     RegistredStudent *array_registred;
     array_registred = (RegistredStudent *)malloc(sizeof(RegistredStudent));
     int number_of_registred = 0;
 
     // Student that come on exam
+    char *buffer2;
     StudentCome *array_come;
     array_come = (StudentCome *)malloc(sizeof(StudentCome));
+    int number_of_come = 0;
 
     printf("Studenti:\n");
     while (1)
@@ -89,14 +131,34 @@ int main(int argc, char const *argv[])
             number_of_name = 0;
         }
     }
-
-
+    number_of_name = 0;
     while (1)
     {
-        /* code */
+
+        buffer2 = (char *)malloc(32 * sizeof(char));
+
+        if (scanf("%s", buffer2) == EOF)
+        {
+            printf("\n\nKonec Načítání\n-------------------\n");
+            break;
+        }
+        if (strcmp(buffer2, "P:") != 0) // konec Registrovaných
+        {
+            printf("%s ", buffer2);
+            number_of_name++;
+            SavearrayCome(array_come, number_of_come, number_of_name, buffer2);
+        }
+        else
+        {
+            number_of_name = 0;
+            number_of_come++;
+            array_come = (StudentCome *)realloc(array_come, number_of_come * 3 * sizeof(StudentCome));
+            printf("\n");
+        }
     }
-    
+
     PrintArray(array_registred, number_of_registred);
+    PrintArrayCome(array_come, number_of_come);
 
     return 0;
 }
