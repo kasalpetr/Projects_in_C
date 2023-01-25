@@ -57,12 +57,13 @@ int main(int argc, char const *argv[])
         number_of_points++;
         array_of_point = (point *)realloc(array_of_point, number_of_points * sizeof(point) * 2);
     }
-    Printarray(array_of_point, number_of_points);
+    // Printarray(array_of_point, number_of_points);
 
     for (int i = 0; i < number_of_points; i++)
     {
         for (int j = i; j < number_of_points; j++)
         {
+
             height_now = array_of_point[i].height - array_of_point[j].height;
             lenght_now = array_of_point[j].start - array_of_point[i].start;
             if (max_height < height_now)
@@ -77,41 +78,53 @@ int main(int argc, char const *argv[])
                 max_height = height_now;
                 max_lenght = lenght_now;
             }
-            if (max_height == height_now)
+            else
             {
-                if (max_lenght == lenght_now)
+                if (max_height == height_now)
                 {
-                    number_of_trace++;
-                    array_of_trace = (trace *)realloc(array_of_trace, number_of_trace * sizeof(trace) * 2);
-                    array_of_trace[number_of_trace].start_km = array_of_point[i].start;
-                    array_of_trace[number_of_trace].start_height = array_of_point[i].height;
-                    array_of_trace[number_of_trace].end_km = array_of_point[j].start;
-                    array_of_trace[number_of_trace].end_height = array_of_point[j].height;
-                    max_height = height_now;
-                    max_lenght = lenght_now;
-                }
-                if (max_lenght < lenght_now)
-                {
-                    number_of_trace = 0;
-                    free(array_of_trace);
-                    array_of_trace = (trace *)malloc(sizeof(trace));
-                    array_of_trace[number_of_trace].start_km = array_of_point[i].start;
-                    array_of_trace[number_of_trace].start_height = array_of_point[i].height;
-                    array_of_trace[number_of_trace].end_km = array_of_point[j].start;
-                    array_of_trace[number_of_trace].end_height = array_of_point[j].height;
-                    max_height = height_now;
-                    max_lenght = lenght_now;
+                    if (max_lenght == lenght_now)
+                    {
+                        number_of_trace++;
+                        array_of_trace = (trace *)realloc(array_of_trace, number_of_trace * sizeof(trace) * 2);
+                        array_of_trace[number_of_trace].start_km = array_of_point[i].start;
+                        array_of_trace[number_of_trace].start_height = array_of_point[i].height;
+                        array_of_trace[number_of_trace].end_km = array_of_point[j].start;
+                        array_of_trace[number_of_trace].end_height = array_of_point[j].height;
+                        max_height = height_now;
+                        max_lenght = lenght_now;
+                    }
+                    if (max_lenght < lenght_now)
+                    {
+                        number_of_trace = 0;
+                        free(array_of_trace);
+                        array_of_trace = (trace *)malloc(sizeof(trace));
+                        array_of_trace[number_of_trace].start_km = array_of_point[i].start;
+                        array_of_trace[number_of_trace].start_height = array_of_point[i].height;
+                        array_of_trace[number_of_trace].end_km = array_of_point[j].start;
+                        array_of_trace[number_of_trace].end_height = array_of_point[j].height;
+                        max_height = height_now;
+                        max_lenght = lenght_now;
+                    }
                 }
             }
         }
     }
-    printf("\n %d %d ---- %d\n", max_lenght, max_height, number_of_trace);
+
+    if (max_lenght != 0)
+    {
+    printf("\n\n*%d km, klesani: %d m, varianty: %d*\n", max_lenght, max_height, number_of_trace+1);
 
     for (int i = 0; i <= number_of_trace; i++)
     {
         printf("* + %d (%d) -> + %d (%d)*\n", array_of_trace[i].start_km, array_of_trace[i].start_height, array_of_trace[i].end_km, array_of_trace[i].end_height);
     }
-
+    printf("\n\n");
+    }else
+    {
+        printf("*Nenalezeno*\n");
+    }
+    
+    
     free(array_of_trace);
     free(array_of_point);
     return 0;

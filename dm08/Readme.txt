@@ -1,4 +1,4 @@
-Není hotovo
+Hotovo
 -----------
 
 Úkolem je vytvořit program, který bude vyhledávat plán pro cyklistický výlet. Vstupem programu je zadaná cyklotrasa. Cyklotrasa je definována body, kde lze jízdu začít/ukončit (mezi 
@@ -11,4 +11,4 @@ Vstupem programu jsou jednotlivé nástupní/koncové body na cyklotrase, např.
 
 První vstup udává nadmořskou výšku startovního bodu trasy. Následují další body na trase vždy v podobě + vzdálenost_od_startu nadmořská_výška. Vstup končí s EOF. Výstupem programu je 
 vyhledaný úsek na cyklotrase, kde lze dosáhnout největšího klesání. Výstupem je jednak délka nalezeného úseku, dále dosažené klesání a počet variant kde ho lze dosáhnout. Na dalších 
-řádkách pak následuje výpis těchto úseků. 
+řádkách pak následuje výpis těchto úseků.
