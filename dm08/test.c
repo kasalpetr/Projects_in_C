@@ -2,44 +2,89 @@
 #include <cstdlib>
 typedef struct point
 {
-    int lenght;
+    int height;
     int start;
 } point;
+
+typedef struct trace
+{
+    int start_km;
+    int end_km;
+    int start_height;
+    int end_height;
+    int lenght;
+    int height;
+
+} trace;
+
+
 
 void Printarray(struct point array[], int number_of_elements)
 {
     for (int i = 0; i < number_of_elements; i++)
     {
-        printf("%d --- %d\n", array[i].start, array[i].lenght);
+        printf("%d --- %d\n", array[i].start, array[i].height);
     }
 }
 
 int main(int argc, char const *argv[])
 {
     // scanf variables
-    int lenght = 0;
+    int height = 0;
     int start = 0;
     // array of struct
     point *array_of_point;
     array_of_point = (point *)malloc(sizeof(point));
     int number_of_points = 0;
 
-    scanf("%d\n", &lenght); // scanf first point
+    // array of trace
+    trace *array_of_trace;
+    array_of_trace = (trace *)malloc(sizeof(trace));
+    int number_of_trace = 0;
 
-    array_of_point[number_of_points].lenght = lenght; // save first point
+    //
+    int max_height = 0;
+    int height_now = 0;
+    int max_lenght = 0;
+    int lenght_now = 0;
+
+    scanf("%d\n", &height); // scanf first point
+
+    array_of_point[number_of_points].height = height; // save first point
     array_of_point[number_of_points].start = start;
     number_of_points++;
     array_of_point = (point *)realloc(array_of_point, number_of_points * sizeof(point) * 2);
 
-    while (scanf("+ %d %d\n", &start, &lenght) != EOF) //Scanf all points without first
+    while (scanf("+ %d %d\n", &start, &height) != EOF) // Scanf all points without first
     {
-        array_of_point[number_of_points].lenght = lenght;
+        array_of_point[number_of_points].height = height;
         array_of_point[number_of_points].start = start;
         number_of_points++;
         array_of_point = (point *)realloc(array_of_point, number_of_points * sizeof(point) * 2);
     }
-
     Printarray(array_of_point, number_of_points);
+
+    for (int i = 0; i < number_of_points; i++)
+    {
+        for (int j = i; j < number_of_points; j++)
+        {
+            height_now = array_of_point[i].height - array_of_point[j].height;
+            lenght_now = array_of_point[j].start - array_of_point[i].start;
+            if (max_height < height_now)
+            {
+                max_height = height_now;
+                max_lenght = lenght_now;
+            }
+            if (max_height == height_now)
+            {
+                max_height = height_now;
+                max_lenght = lenght_now;
+            }
+        }
+    }
+    printf("\n %d %d\n", max_lenght, max_height);
+
+    free(array_of_trace);
     free(array_of_point);
     return 0;
 }
