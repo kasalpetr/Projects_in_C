@@ -6,10 +6,12 @@ typedef struct point
     int start;
 } point;
 
-void Savepoint(struct point array[], int number_of_element, int lenght, int start){
-array[number_of_element].lenght = lenght;
-array[number_of_element].start = start;
-
+void Printarray(struct point array[], int number_of_elements)
+{
+    for (int i = 0; i < number_of_elements; i++)
+    {
+        printf("%d --- %d\n", array[i].start, array[i].lenght);
+    }
 }
 
 int main(int argc, char const *argv[])
@@ -23,22 +25,21 @@ int main(int argc, char const *argv[])
     int number_of_points = 0;
 
     scanf("%d\n", &lenght); // scanf first point
-    printf("%d\n", lenght);
 
-    Savepoint(array_of_point, number_of_points, lenght, start);
-    array_of_point = (point *)realloc(array_of_point, number_of_points+1 * sizeof(point));
+    array_of_point[number_of_points].lenght = lenght; // save first point
+    array_of_point[number_of_points].start = start;
     number_of_points++;
-    
+    array_of_point = (point *)realloc(array_of_point, number_of_points * sizeof(point) * 2);
 
-    while (scanf("+ %d %d\n", &start, &lenght) != EOF)
+    while (scanf("+ %d %d\n", &start, &lenght) != EOF) //Scanf all points without first
     {
-        printf("+ %d %d\n", start, lenght);
-        array_of_point[number_of_points].lenght = lenght; // save first point
+        array_of_point[number_of_points].lenght = lenght;
         array_of_point[number_of_points].start = start;
-        array_of_point = (point *)realloc(array_of_point, number_of_points + 1 * sizeof(point));
+        number_of_points++;
+        array_of_point = (point *)realloc(array_of_point, number_of_points * sizeof(point) * 2);
     }
 
-
+    Printarray(array_of_point, number_of_points);
     free(array_of_point);
     return 0;
 }
