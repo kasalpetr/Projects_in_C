@@ -25,7 +25,7 @@ void delList(Tnode *l)
 }
 int cmp_int(const void *a, const void *b)
 {
-  return * (int *)a - * (int *)b;
+  return *(int *)a - *(int *)b;
 }
 
 Tnode *compareList(Tnode **a, int nr)
@@ -41,16 +41,16 @@ Tnode *compareList(Tnode **a, int nr)
     {
       array[number_of_int] = tmp->m_Val;
       number_of_int++;
-      array = (int *)realloc(array, number_of_int * sizeof(int)*2);
+      array = (int *)realloc(array, number_of_int * sizeof(int) * 2);
       tmp = tmp->m_Next;
     }
   }
-  qsort(array,number_of_int, sizeof(array[0]),cmp_int);
+  qsort(array, number_of_int, sizeof(array[0]), cmp_int);
+
   for (int i = 0; i < number_of_int; i++)
   {
-    printf("%d\n", array[i]);
+    res->m_Val = array[0];
   }
-  
   return res;
 }
 
