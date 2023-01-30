@@ -30,7 +30,7 @@ int cmp_int(const void *a, const void *b)
 
 Tnode *CreateList(int data[], int number_of_element)
 {
-  
+
   Tnode *head = NULL;
   Tnode *temp;
   Tnode *current;
@@ -38,12 +38,14 @@ Tnode *CreateList(int data[], int number_of_element)
   head->m_Val = data[0];
   head->m_Next = NULL;
   current = head;
-  for (int i = 0; i < number_of_element; i++)
+  for (int i = 1; i < number_of_element; i++)
   {
-    temp = (Tnode*)malloc(sizeof(Tnode));
-
+    temp = (Tnode *)malloc(sizeof(Tnode));
+    temp->m_Val = data[i];
+    current->m_Next = temp;
+    current = temp;
+    current->m_Next = NULL;
   }
-  
 
   return head;
 }
@@ -53,13 +55,32 @@ Tnode *compareList(Tnode **a, int nr)
   int *array = (int *)malloc(1 * sizeof(int));
   Tnode *tmp = (Tnode *)malloc(sizeof(*tmp));
   Tnode *res = (Tnode *)malloc(sizeof(*res));
+  int max = 0;
   int number_of_int = 0;
   for (int i = 0; i < nr; i++)
   {
     tmp = a[i];
+    max = tmp->m_Val;
+    if (tmp == NULL)
+    {
+      res = NULL;
+      return res;
+    }
+
     while (tmp != NULL)
     {
       array[number_of_int] = tmp->m_Val;
+      if (max <= tmp->m_Val)
+      {
+        max = array[number_of_int];
+      }
+      else
+      {
+        printf("klesající\n");
+        res = NULL;
+        return res;
+      }
+
       number_of_int++;
       array = (int *)realloc(array, number_of_int * sizeof(int) * 2);
       tmp = tmp->m_Next;
@@ -71,7 +92,6 @@ Tnode *compareList(Tnode **a, int nr)
   {
     res = CreateList(array, number_of_int);
   }
-  printf("%d\n",res->m_Val);
   return res;
 }
 
@@ -92,7 +112,7 @@ int main(int argc, char *argv[])
                                                                 createItem(9, NULL))))));
 
   res = compareList(a, 2);
-  printf("asfa\n");
+
   assert(res->m_Val == 1);
   assert(res->m_Next->m_Val == 2);
   assert(res->m_Next->m_Next->m_Val == 3);
