@@ -28,6 +28,26 @@ int cmp_int(const void *a, const void *b)
   return *(int *)a - *(int *)b;
 }
 
+Tnode *CreateList(int data[], int number_of_element)
+{
+  
+  Tnode *head = NULL;
+  Tnode *temp;
+  Tnode *current;
+  head = (Tnode *)malloc(sizeof(Tnode));
+  head->m_Val = data[0];
+  head->m_Next = NULL;
+  current = head;
+  for (int i = 0; i < number_of_element; i++)
+  {
+    temp = (Tnode*)malloc(sizeof(Tnode));
+
+  }
+  
+
+  return head;
+}
+
 Tnode *compareList(Tnode **a, int nr)
 {
   int *array = (int *)malloc(1 * sizeof(int));
@@ -49,8 +69,9 @@ Tnode *compareList(Tnode **a, int nr)
 
   for (int i = 0; i < number_of_int; i++)
   {
-    res->m_Val = array[0];
+    res = CreateList(array, number_of_int);
   }
+  printf("%d\n",res->m_Val);
   return res;
 }
 
@@ -71,6 +92,7 @@ int main(int argc, char *argv[])
                                                                 createItem(9, NULL))))));
 
   res = compareList(a, 2);
+  printf("asfa\n");
   assert(res->m_Val == 1);
   assert(res->m_Next->m_Val == 2);
   assert(res->m_Next->m_Next->m_Val == 3);
