@@ -35,7 +35,7 @@ void delList ( TITEM * l ) {
 #endif /* __PROGTEST__ */
  
 TITEM * maxOf ( TITEM ** x, int nr ) {
-   /*To Do*/
+  
 }
  
 #ifndef __PROGTEST__
