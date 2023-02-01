@@ -1,4 +1,3 @@
-#ifndef __PROGTEST__
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,13 +31,23 @@ void delList ( TITEM * l ) {
       l = tmp;
   }
 }
-#endif /* __PROGTEST__ */
  
 TITEM * maxOf ( TITEM ** x, int nr ) {
-  
+TITEM *tmp;
+for (int i = 0; i < nr; i++)
+{
+  tmp = x[i];
+  while (tmp != NULL)
+  {
+    printf("%c", tmp->m_Digit);
+    tmp = tmp->m_Next;
+  }
+    printf("----------\n");
+}
+
+
 }
  
-#ifndef __PROGTEST__
 int main ( void ) {
  
     TITEM * a[5];
@@ -49,6 +58,7 @@ int main ( void ) {
     a[1] = createList("113");
     a[2] = createList("197");
     res = maxOf(a, 3);
+     maxOf(a, 3);
  
     assert(res == a[2]);
  
@@ -144,4 +154,3 @@ int main ( void ) {
     for(int i = 0; i < 5; i++) delList(a[i]);
     return 0;
 }
-#endif /* __PROGTEST__ */
