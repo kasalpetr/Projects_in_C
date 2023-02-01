@@ -112,18 +112,16 @@ int main(int argc, char const *argv[])
 
     if (max_lenght != 0)
     {
-    printf("\n\n*%d km, klesani: %d m, varianty: %d*\n", max_lenght, max_height, number_of_trace+1);
+    printf("*%d km, klesani: %d m, varianty: %d*\r\n", max_lenght, max_height, number_of_trace+1);
 
     for (int i = 0; i <= number_of_trace; i++)
     {
-        printf("* + %d (%d) -> + %d (%d)*\n", array_of_trace[i].start_km, array_of_trace[i].start_height, array_of_trace[i].end_km, array_of_trace[i].end_height);
+        printf("*+ %d (%d) -> + %d (%d)*", array_of_trace[i].start_km, array_of_trace[i].start_height, array_of_trace[i].end_km, array_of_trace[i].end_height);
     }
-    printf("\n\n");
     }else
     {
-        printf("*Nenalezeno*\n");
+        printf("*Nenalezeno*");
     }
-    
     
     free(array_of_trace);
     free(array_of_point);
