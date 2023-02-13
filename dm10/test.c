@@ -1,156 +1,123 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assert.h>
-#include <ctype.h>
- 
-typedef struct Titem {
-  struct Titem * m_Next;
-  char m_Digit;
-} TITEM;
- 
-TITEM * createItem ( char i ,TITEM * next ) {
-  TITEM * l = (TITEM*) malloc ( sizeof(*l) ); 
-  l->m_Digit = i;
-  l->m_Next = next;
-  return l;
-}
-TITEM * createList(const char * x) {
-    int i = 0;
-    TITEM * item = NULL;
-    while(x[i]) {
-     item = createItem (x[i], item);
-     i++;
-    }
-    return item;
-}
-void delList ( TITEM * l ) {
-  while (l) {
-      TITEM * tmp = l->m_Next;
-      free (l);
-      l = tmp;
-  }
-}
- 
-TITEM * maxOf ( TITEM ** x, int nr ) {
-TITEM *tmp;
-for (int i = 0; i < nr; i++)
+#include <cstring>
+#include <cstdlib>
+
+typedef struct parking_place
 {
-  tmp = x[i];
-  while (tmp != NULL)
+  int x;
+  int y;
+  char *RZ;
+} parking_place;
+
+void PrintcarHouse(struct parking_place *array, int number_of_element)
+{
+  for (int i = 0; i < number_of_element; i++)
   {
-    printf("%c", tmp->m_Digit);
-    tmp = tmp->m_Next;
+    printf("park %d %d %s\n", array[i].x, array[i].y, array[i].RZ);
   }
-    printf("----------\n");
 }
 
-
+void Freehousememory(struct parking_place *array, int number_of_element)
+{
+  for (int i = 0; i < number_of_element; i++)
+  {
+    free(array[i].RZ);
+  }
+  free(array);
 }
- 
-int main ( void ) {
- 
-    TITEM * a[5];
-    TITEM * res;
- 
-    //----- Zakladni test ----------------------------------------------
-    a[0] = createList("191");
-    a[1] = createList("113");
-    a[2] = createList("197");
-    res = maxOf(a, 3);
-     maxOf(a, 3);
- 
-    assert(res == a[2]);
- 
-    for(int i = 0; i < 3; i++) delList(a[i]);
- 
-    //----- Radove vyssi cislo -----------------------------------------
-    a[0] = createList("313");
-    a[1] = createList("1191");
-    a[2] = createList("997");
-    res = maxOf(a, 3);
- 
-    assert(res == a[1]);
- 
-    for(int i = 0; i < 3; i++) delList(a[i]);
- 
-    //----- Chybny vstup -----------------------------------------------
-    a[0] = createList("222");
-    a[1] = NULL;
-    a[2] = createList("4333");
-    a[3] = createList("1");
-    res = maxOf(a, 4);
- 
-    assert(res == NULL);
- 
-    for(int i = 0; i < 4; i++) delList(a[i]);
- 
-    //----- Chybna hodnota ---------------------------------------------
-    a[0] = createList("29a");
-    a[1] = createList("11");
-    res = maxOf(a, 2);
- 
-    assert(res == NULL);
- 
-    for(int i = 0; i < 2; i++) delList(a[i]);
- 
-    //----- Stejna cisla -----------------------------------------------
-    a[0] = createList("27986");
-    a[1] = createList("3256");
-    a[2] = createList("27986");
-    a[3] = createList("17000");
-    res = maxOf(a, 4);
- 
-    assert(res == a[0]);
- 
-    for(int i = 0; i < 4; i++) delList(a[i]);
- 
-    //----- Nula -------------------------------------------------------
-    a[0] = createList("0");
-    a[1] = createList("0");
-    a[2] = createList("0");
-    a[3] = createList("0");
-    a[4] = createList("0");
-    res = maxOf(a, 5);
- 
-    assert(res == a[0]);
- 
-    for(int i = 0; i < 5; i++) delList(a[i]);
- 
-    //----- Unsigned Long Long Int -------------------------------------
-    a[0] = createList("0");
-    a[1] = createList("18446744073709551615");
-    a[2] = createList("1112367822345622");
-    a[3] = createList("9991234530632948235");
-    a[4] = createList("1213004921032");
-    res = maxOf(a, 5);
- 
-    assert(res == a[1]);
- 
-    for(int i = 0; i < 5; i++) delList(a[i]);
- 
-    //----- Vetsi jak Unsigned Long Long Int ---------------------------
-    a[0] = createList("50230529401950984100481491404914091408580");
-    a[1] = createList("50230529401950123123123234492492042044242");
-    a[2] = createList("50230529401950984100480123032931110119944");
-    a[3] = createList("50230529401950123123123234492400000000000");
-    a[4] = createList("50230531000000000000000000000000000000000");
-    res = maxOf(a, 5);
- 
-    assert(res == a[4]);
- 
-    for(int i = 0; i < 5; i++) delList(a[i]);
- 
-    //----- Vetsi jak Unsigned Long Long Int ruzne dlouhe --------------
-    a[0] = createList("253051330239013091349049023023");
-    a[1] = createList("253051330239013091349049023024");
-    a[2] = createList("2094241212100000000000100100");
-    a[3] = createList("999919103904248923023");
-    a[4] = createList("999999999999999999999999999");
-    res = maxOf(a, 5);
- 
-    assert(res == a[1]);
- 
-    for(int i = 0; i < 5; i++) delList(a[i]);
-    return 0;
+
+int main(int argc, char const *argv[])
+{
+  int change = 0;
+  char *element;
+  int actual_x = 0;
+  int actual_y = 0;
+  char *actual_RZ;
+
+  parking_place *parkingHouse;
+  parkingHouse = (parking_place *)malloc(sizeof(parking_place) * 2);
+  int number_of_cars = 0;
+  int number_of_struct = 0;
+
+  int max_X = 0;
+  int max_Y = 0;
+  printf("Velikost\n");
+  scanf("%d %d", &max_X, &max_Y);
+  printf("Pozadavky\n");
+
+  while (1)
+  {
+    element = (char *)malloc(sizeof(element));
+    actual_RZ = (char *)malloc(sizeof(actual_RZ) * 11);
+    scanf("%s", element);
+    if (strcmp(element, "+") == 0) // if na vstupu +
+    {
+      scanf(" %d %d %s\n", &actual_x, &actual_y, actual_RZ);
+    }
+    else if (strcmp(element, "-") == 0) // if na vstupu -
+    {
+      scanf(" %s\n", actual_RZ);
+    }
+    else // na vstupu není + ani - ->end
+    {
+      printf("není +/-\n");
+
+      break;
+    }
+
+    if (actual_x > max_X || actual_y > max_Y) // if vetsi nez house
+    {
+      printf("Parkuješ někomu na zahradě\n");
+      break;
+    }
+    if (strcmp(element, "+") == 0)
+    {
+      for (int i = 0; i < number_of_struct; i++)
+      {
+        if (parkingHouse[i].x == max_X + 1 && parkingHouse[i].y == max_Y + 1)
+        {
+          parkingHouse[i].RZ = actual_RZ;
+          parkingHouse[i].x = actual_x;
+          parkingHouse[i].y = actual_y;
+          number_of_cars++;
+          change = 1;
+          break;
+        }
+      }
+      if (!change)
+      {
+        printf("Ulozeno\n");
+      parkingHouse[number_of_cars].RZ = actual_RZ;
+      parkingHouse[number_of_cars].x = actual_x;
+      parkingHouse[number_of_cars].y = actual_y;
+      number_of_cars++;
+      parkingHouse = (parking_place *)realloc(parkingHouse, number_of_cars + 32 * (sizeof(parking_place)));
+      number_of_struct++;
+      }
+      
+    }
+    else
+    {
+      for (int i = 0; i < number_of_cars; i++)
+      {
+        if (strcmp(parkingHouse[i].RZ, actual_RZ) == 0)
+        {
+          printf("ok %d %d %s %s\n", actual_x, actual_y, actual_RZ, parkingHouse[i].RZ);
+          free(parkingHouse[i].RZ);
+          parkingHouse[i].RZ = NULL;
+          parkingHouse[i].x = max_X + 1;
+          parkingHouse[i].y = max_Y + 1;
+          number_of_cars--;
+        }
+      }
+      free(actual_RZ);
+    }
+    free(element);
+  }
+  PrintcarHouse(parkingHouse, number_of_struct);
+  Freehousememory(parkingHouse, number_of_struct);
+  free(actual_RZ);
+  free(element);
+
+  return 0;
 }
